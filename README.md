@@ -2,7 +2,7 @@
 
 ## 25 Questions Exploratory Data Analysis with R
 
-The dataset used in this project was downloaded from kaggle[120 years of Olympic history](https://www.kaggle.com/datasets/heesoo37/120-years-of-olympic-history-athletes-and-results?datasetId=31029)
+The dataset used in this project was downloaded from kaggle [120 years of Olympic history](https://www.kaggle.com/datasets/heesoo37/120-years-of-olympic-history-athletes-and-results?datasetId=31029)
 
 The Olympic Games from 1896 to 2016 are included in this dataset. The dataset contains two files: the athletes file and the region file.
 
@@ -40,7 +40,9 @@ I have written code for each question to be self-explanatory, that even if you a
 24. Get the top 10 athletes by number of medals earned (gold, silver, or bronze).
 25. What age group participated in the game the most?
 
-You Can also[Click on my medium page]() for detailed Analysis and results output to each of the questions.
+You Can also [Click on my medium page](https://medium.com/@abiodunonadeji/120-years-of-olympic-history-4ae8515f0465) for detailed Analysis and results output to each of the questions.
+
+
 
 
 
