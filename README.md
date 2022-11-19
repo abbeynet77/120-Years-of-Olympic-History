@@ -2,6 +2,8 @@
 
 ## 25 Questions Exploratory Data Analysis with R
 
+![OLYMPIC HISTORY](https://github.com/abbeynet77/120-Years-of-Olympic-History/blob/main/OLYMPIC%20HISTORY.png)
+
 The dataset used in this project was downloaded from kaggle [120 years of Olympic history](https://www.kaggle.com/datasets/heesoo37/120-years-of-olympic-history-athletes-and-results?datasetId=31029)
 
 The Olympic Games from 1896 to 2016 are included in this dataset. The dataset contains two files: the athletes file and the region file.
