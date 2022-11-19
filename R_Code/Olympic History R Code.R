@@ -72,8 +72,7 @@ n_distinct(Event_Region$games)
 Event_Region %>% 
   select(games, city) %>%
   distinct() %>% 
-  arrange(games) %>% 
-  View()
+  arrange(games)
 
 #The first Olympic game ever was in 1896 Summer which was hosted in Athina city
 
@@ -84,8 +83,7 @@ Event_Region %>%
 Event_Region %>% 
   select(games, region) %>% 
   distinct() %>% 
-  filter(games=="1896 Summer") %>% 
-  View()
+  filter(games=="1896 Summer")
 
 # 12 Region participated in 1896 Summer game among which were Greece, Uk, Switzerland etc
 
@@ -95,8 +93,7 @@ Event_Region %>%
 Event_Region %>% 
   select(games, total_countries = region) %>% 
   distinct() %>% 
-  aggregate(total_countries~games, FUN = length) %>% 
-  View()
+  aggregate(total_countries~games, FUN = length)
 
 
 #5. Which Olympic game has the most and least countries participating?
@@ -106,8 +103,7 @@ Event_Region %>%
   distinct() %>% 
   aggregate(region ~ games, FUN = length) %>% 
   summarise(lowest_country_partcipation  = c(min(games),min(region)),
-            highest_country_partcipation= c(max(games),max(region))) %>% 
-  View()
+            highest_country_partcipation= c(max(games),max(region)))
 
 
 #6.Which nation or country has competed in each and every Olympic Game?
@@ -116,8 +112,7 @@ Event_Region %>%
   select(region, games) %>%
   distinct() %>% 
   aggregate(games~region, FUN = length) %>% 
-  filter(games == 51) %>% 
-  View()
+  filter(games == 51)
 #-------------------------------------------------------------------------
 
 #7. Get the top 5 medal-winning nations from the Olympics. Success is measured 
@@ -127,8 +122,7 @@ Event_Region %>%
   select(country = region, total_medals = medal) %>% 
   aggregate(total_medals ~ country, FUN = length) %>% 
   arrange(desc(total_medals)) %>% 
-  slice(1:5) %>% 
-  View()
+  slice(1:5)
 
 
 
@@ -143,8 +137,7 @@ Event_Region %>%
   pivot_wider(names_from = "medal", values_from = "n") %>% 
   select(Gold, Silver, Bronze) %>% 
   na.omit() %>% 
-  arrange(desc(Gold)) %>% 
-  View()
+  arrange(desc(Gold))
 
 
 #9.List all of Nigeria's gold, silver, and bronze medals from each Olympic game.
@@ -159,8 +152,7 @@ Event_Region %>%
   mutate(Gold = replace_na(Gold, 0), 
          Silver= replace_na(Silver, 0),
          Bronze = replace_na(Bronze, 0)) %>% 
-  arrange(desc(Gold)) %>% 
-  View()
+  arrange(desc(Gold))
 
 
 #10.List the total number of gold, silver, and bronze medals each nation has earned at each Olympic game.
@@ -173,8 +165,7 @@ Event_Region %>%
   select(Gold, Silver, Bronze) %>%
   mutate(Gold = replace_na(Gold, 0), 
          Silver= replace_na(Silver, 0),
-         Bronze = replace_na(Bronze, 0)) %>% 
-  View()
+         Bronze = replace_na(Bronze, 0))
 
 #11. Which country has never won a gold medal but has instead received a silver or bronze?
 
@@ -187,8 +178,7 @@ Event_Region %>%
   mutate(Gold = replace_na(Gold, 0), 
          Silver= replace_na(Silver, 0),
          Bronze = replace_na(Bronze, 0)) %>% 
-  filter(Gold == 0 & Silver > 0 & Bronze > 0) %>% 
-  View()
+  filter(Gold == 0 & Silver > 0 & Bronze > 0)
 
 
 #12. Which sport has Nigerian athletes won the most medals?
@@ -197,8 +187,7 @@ Event_Region %>%
   select(region, sport, medal) %>% 
   aggregate(medal ~ region + sport , FUN = length) %>% 
   filter(region == "Nigeria") %>% 
-  arrange(desc(medal)) %>% 
-  View()
+  arrange(desc(medal))
 
 #13. Analyze each Olympic games in which Nigeria won a football medal, noting the total number of medals obtained.
 
@@ -206,8 +195,7 @@ Event_Region %>%
   select(team, sport, games, medal) %>% 
   aggregate(medal ~ team + sport + games , FUN = length) %>% 
   filter(team == "Nigeria" & sport == "Football") %>% 
-  arrange(desc(medal)) %>% 
-  View()
+  arrange(desc(medal))
 
 
 # SPORT ANALYSIS
@@ -217,8 +205,7 @@ Event_Region %>%
 Event_Region %>% 
   select(sport, season) %>% 
   distinct() %>% 
-  filter(season == "Summer") %>% 
-  View()
+  filter(season == "Summer")
 
 
 #15.Which Olympic game have only ever been played once?
@@ -237,8 +224,7 @@ Event_Region %>%
   select(games, sport) %>% 
   distinct() %>% 
   aggregate(sport ~ games, FUN = length) %>% 
-  arrange(desc(sport)) %>% 
-  View()
+  arrange(desc(sport))
 
 #GENDER AND ATHLETHE ANALYSIS
 
@@ -246,16 +232,14 @@ Event_Region %>%
 
 Event_Region %>% 
   group_by(sex) %>% 
-  summarise(total=n()) %>% 
-  View()
+  summarise(total=n())
 
 #18. What is the Total Number of Participants Over the Year?
 
 Event_Region %>% 
   select(year, season, total_participant = sex) %>% 
   aggregate(total_participant ~ year + season, FUN = length) %>% 
-  arrange(year) %>% 
-  View()
+  arrange(year)
 
 #19. What was the gender participation breakdown throughout the course of the year?
 
@@ -265,8 +249,7 @@ Event_Region %>%
   pivot_wider(names_from = "sex", values_from = "n")%>%
   select(male = M, female =F) %>% 
   mutate(male = replace_na(male, 0),
-         female = replace_na(female,0)) %>% 
-  View()
+         female = replace_na(female,0))
 
 
 #20. What were the Medals totaling gold, silver, and bronze received by each gender?
@@ -277,8 +260,7 @@ Event_Region %>%
   drop_na() %>%
   pivot_wider(names_from = "medal", values_from = "n") %>% 
   select(Gold, Silver, Bronze) %>% 
-  mutate(total = (Gold + Silver + Bronze)) %>% 
-  View()
+  mutate(total = (Gold + Silver + Bronze))
 
 
 
@@ -288,8 +270,7 @@ Event_Region %>%
   select(name, age, region, medal) %>% 
   filter(age < 15 & medal == "Gold") %>%
   arrange(region, age) %>% 
-  distinct() %>%
-  View()
+  distinct()
 
 #22. Who are the oldest athletes to have won a gold medal?
 
@@ -297,8 +278,7 @@ Event_Region %>%
   select(name, sex, age, team, games, 
          city, sport, event, medal, region) %>% 
   arrange(desc(age)) %>% 
-  filter(medal == "Gold", age == 64) %>% 
-  View()
+  filter(medal == "Gold", age == 64)
 
 
 #23. Who are the top 10 athletes who have won the most
@@ -309,8 +289,7 @@ Event_Region %>%
   filter(total_gold_medals == "Gold") %>% 
   aggregate(total_gold_medals ~ name + team, FUN = length) %>% 
   arrange(desc(total_gold_medals)) %>% 
-  slice(1:10) %>% 
-  View()
+  slice(1:10)
 
 #24. Get the top 10 athletes by number of medals earned (gold, silver, or bronze).
 
@@ -318,8 +297,7 @@ Event_Region %>%
   select(name, total_medals = medal, team) %>% 
   aggregate(total_medals ~ name + team, FUN = length) %>% 
   arrange(desc(total_medals)) %>% 
-  slice(1:10) %>% 
-  View()
+  slice(1:10)
 
 #25. What age group participated in the game the most?
 
@@ -327,8 +305,7 @@ Event_Region %>%
   group_by(age_group = age) %>% 
   summarise(count=n()) %>%
   na.omit() %>%
-  arrange(desc(count)) %>% 
-  View()
+  arrange(desc(count))
 
 #the most age group is 23 years of age with 21,848 participant
 
